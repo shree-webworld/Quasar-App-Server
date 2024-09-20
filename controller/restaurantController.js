@@ -44,6 +44,27 @@ const getRestaurants = async (req, res) =>{
      }
 
 
+     const getSingleRestaurant = async (req, res) =>{
+      try
+      {
+        const getSingleRestaurantDetails = await Restaurant.findOne({
+          where:{
+                    id:req.params.id
+                }
+      });
+
+
+        res.status(200).json(getSingleRestaurantDetails);
+      }catch (e)
+        {
+          console.log(e);
+          return res.status(500).json({error : "Failed to fetch post data"});
+
+        }
+}
+
+
+
 const updateRestaurant = async (req, res) =>{
       try
       {
@@ -83,4 +104,4 @@ const deleteRestaurant = async (req, res) =>{
 }
 
 
-export {getRestaurants, addRestaurant, deleteRestaurant, updateRestaurant}     
+export {getRestaurants, addRestaurant, deleteRestaurant, updateRestaurant, getSingleRestaurant}     
